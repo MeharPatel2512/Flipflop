@@ -103,9 +103,9 @@
                             <!-- Filter section, show/hide based on section state. -->
                             <div class="pt-6" id="filter-section-0" *ngIf="showcat == true">
                                 <div class="space-y-4">
-                                    <div *ngFor="let cate of categories" class="flex items-center">
-                                        <input type="checkbox" [(ngModel)] = "selectedcategories.isChecked" value="{{}}" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                        <label class="ml-3 text-sm text-gray-600">{{cate}}</label>
+                                    <div *ngFor="let cate of selectedcategories" class="flex items-center">
+                                        <input type="checkbox" name="cate" [(ngModel)] = "cate.isChecked" value="{{cate.id}}" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <label class="ml-3 text-sm text-gray-600">{{cate.name}}</label>
                                     </div>
                                 </div>
                             </div>

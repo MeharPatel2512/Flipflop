@@ -1,14 +1,15 @@
 import { Component , HostListener } from '@angular/core'
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductsComponent } from './components/products/products.component';
 import { HomeComponent } from './components/home/home.component';
+import { MycartComponent } from './components/mycart/mycart.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, ProductsComponent, HomeComponent],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, HeaderComponent, FooterComponent, ProductsComponent, HomeComponent, MycartComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -61,6 +61,8 @@ export class ProductsComponent implements OnInit {
         this.selectedcategories.push(obj)
       }
     });
+    // console.log(this.selectedcategories);
+    
   }
 
   getbrands(){
