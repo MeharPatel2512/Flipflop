@@ -1,0 +1,19 @@
+.cart{
+    background-color: rgba(0, 225, 255, 0.2);
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    border-radius: 0.6em;
+    padding: 1em 1.5em;
+    border: 2px solid rgba(0, 17, 255, 0.2);
+    box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    transition: all 1s ease;
+    backdrop-filter: blur(0.2em);
+}
+
+.cart i {
+    font-size: 2em;
+    color: rgb(0, 0, 0);
+    top: 0.5em;
+}

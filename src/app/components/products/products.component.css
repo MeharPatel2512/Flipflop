@@ -1,0 +1,28 @@
+.fa-solid{
+    font-size: 1.2em;
+}
+
+.filterationbar{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.filterbar1{
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.filterbar2{
+    border-bottom: 2px solid black;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.filter{
+    border-left: 2px solid black;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
