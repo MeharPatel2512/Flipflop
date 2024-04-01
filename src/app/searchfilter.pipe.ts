@@ -3,26 +3,29 @@ import { forEach, indexOf } from 'underscore';
 
 @Pipe({
   name: 'searchfilter',
-  standalone: true,
-  pure: true
+  standalone: true
 })
+
 export class SearchfilterPipe implements PipeTransform {
 
-  transform(value: any[], selectedCategories: any[]): any[] {
-    if (!selectedCategories || selectedCategories.length === 0) {
-      return value; // Return the original array if no categories are selected
+  transform(value: any, searchedval : any): any {
+    if(!searchedval){
+      return value
     }
- 
-    return value.filter((item) => {
-      return selectedCategories.some((category) => {
-        return item.category.toLowerCase().includes(category.toLowerCase());
-      });
-    });
+    else{
+      return value.filter((e : any) => {
+        return (e.title.toLowerCase().indexOf(searchedval.toLowerCase()) ||
+        e.brand.toLowerCase().indexOf(searchedval.toLowerCase()) ||
+        e.description.toLowerCase().indexOf(searchedval.toLowerCase())) > -1 ;
+        
+      })
+    } 
   }
+  
 
-    // return value.filter((e:any)=>{
+  // return value.filter((e:any)=>{
     //   return e.Name.toLowerCase().indexOf(args[0].toLowerCase()) > -1;
     // });
-
+    
 
 }

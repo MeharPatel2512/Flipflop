@@ -4,12 +4,13 @@
             <div class="fixed inset-0 bg-black bg-opacity-25"></div>
         </div>
         <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-4" style="align-items: center;">
-                <h1 class="text-4xl font-bold tracking-tight text-gray-900" style = "margin-right: 2em;">All Products</h1>
+            <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-4"
+                style="align-items: center;">
+                <h1 class="text-4xl font-bold tracking-tight text-gray-900" style="margin-right: 2em;">All Products</h1>
 
-                <div class="flex items-center text-center" style = "flex-grow: 1;">
+                <div class="flex items-center text-center" style="flex-grow: 1;">
 
-                    <form class="max-w-md mx-auto" style = "width: 100%;">
+                    <div class="max-w-md mx-auto" style="width: 100%;">
                         <label for="default-search"
                             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                         <div class="relative">
@@ -20,13 +21,10 @@
                                         stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                 </svg>
                             </div>
-                            <input type="search" id="default-search"
-                                class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search Mockups, Logos..." required />
-                            <button type="submit"
-                                class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                            <input [(ngModel)] = "searchtext" type="search" id="default-search"
+                                class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Products Here..." />
                         </div>
-                    </form>
+                    </div>
 
                 </div>
                 <div class="flex items-center">
@@ -89,7 +87,7 @@
                                 <!-- Expand/collapse section button -->
                                 <button type="button"
                                     class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500"
-                                    aria-controls="filter-section-0" aria-expanded="false" (click)="getcategories()">
+                                    aria-controls="filter-section-0" aria-expanded="false" (click)="this.showcat = !this.showcat">
                                     <span class="font-medium text-gray-900">Category</span>
                                     <span class="ml-6 flex items-center">
                                         <!-- Expand icon, show/hide based on section open state. -->
@@ -103,9 +101,10 @@
                             <!-- Filter section, show/hide based on section state. -->
                             <div class="pt-6" id="filter-section-0" *ngIf="showcat == true">
                                 <div class="space-y-4">
-                                    <div *ngFor="let cate of selectedcategories" class="flex items-center">
-                                        <input type="checkbox" name="cate" [(ngModel)] = "cate.isChecked" value="{{cate.id}}" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                        <label class="ml-3 text-sm text-gray-600">{{cate.name}}</label>
+                                    <div *ngFor="let cate of categories" class="flex items-center">
+                                        <input type="checkbox" (click) = "categoryclick(cate)"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <label class="ml-3 text-sm text-gray-600">{{cate}}</label>
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +114,7 @@
                                 <!-- Expand/collapse section button -->
                                 <button type="button"
                                     class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500"
-                                    aria-controls="filter-section-1" aria-expanded="false" (click)="getbrands()">
+                                    aria-controls="filter-section-1" aria-expanded="false" (click)="this.showbrands = !this.showbrands">
                                     <span class="font-medium text-gray-900">Brand</span>
                                     <span class="ml-6 flex items-center">
                                         <!-- Expand icon, show/hide based on section open state. -->
@@ -130,11 +129,9 @@
                             <div class="pt-6" id="filter-section-1" *ngIf="showbrands == true">
                                 <div class="space-y-4">
                                     <div class="flex items-center" *ngFor="let brand of brands">
-                                        <input id="filter-category-0" 
-                                            type="checkbox"
+                                        <input id="filter-category-0" type="checkbox"
                                             class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                        <label
-                                            class="ml-3 text-sm text-gray-600">{{brand}}</label>
+                                        <label class="ml-3 text-sm text-gray-600">{{brand}}</label>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +141,7 @@
                                 <!-- Expand/collapse section button -->
                                 <button type="button"
                                     class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500"
-                                    aria-controls="filter-section-2" aria-expanded="false" (click)="getdis()">
+                                    aria-controls="filter-section-2" aria-expanded="false" (click)="this.showdis = !this.showdis">
                                     <span class="font-medium text-gray-900">Discount</span>
                                     <span class="ml-6 flex items-center">
                                         <!-- Expand icon, show/hide based on section open state. -->
@@ -186,7 +183,7 @@
                                 <!-- Expand/collapse section button -->
                                 <button type="button"
                                     class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500"
-                                    aria-controls="filter-section-2" aria-expanded="false" (click)="getrating()">
+                                    aria-controls="filter-section-2" aria-expanded="false" (click)="this.showrating = !this.showrating">
                                     <span class="font-medium text-gray-900">Rating</span>
                                     <span class="ml-6 flex items-center">
                                         <!-- Expand icon, show/hide based on section open state. -->
@@ -233,7 +230,7 @@
                                 <!-- Expand/collapse section button -->
                                 <button type="button"
                                     class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500"
-                                    aria-controls="filter-section-2" aria-expanded="false" (click)="getprice()">
+                                    aria-controls="filter-section-2" aria-expanded="false" (click)="this.showprice = !this.showprice">
                                     <span class="font-medium text-gray-900">Price</span>
                                     <span class="ml-6 flex items-center">
                                         <!-- Expand icon, show/hide based on section open state. -->
@@ -293,28 +290,28 @@
                     <div class="lg:col-span-3">
                         <!-- Your content -->
 
-
-
-
                         <div class="container"
                             style="display: grid; grid-template-columns: 33% 33% 33%; grid-gap: 0.5em;">
+                            
 
-                            <div *ngFor="let product of data.products | searchfilter : selectedcategories">
+                            <div *ngFor="let product of data.products | searchfilter : searchtext">
                                 <div
                                     class="relative flex w-122 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-                                    <div
-                                        class="relative mx-4 mt-4 h-72 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700">
+                                    <a routerLink="productdetails" routerLinkActive="active"
+                                        class="relative mx-4 mt-4 h-72 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700" (click) = "setproduct(product)">
                                         <img src={{product.thumbnail}} class="h-full w-full object-cover" />
-                                    </div>
+                                        </a>
                                     <div class="p-6">
                                         <div class="mb-2 flex items-center justify-between">
                                             <p style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
                                                 class="block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
                                                 {{product.brand}} {{product.title}}
                                             </p>
+                                        </div>
+                                        <div class="text-end mb-2 flex items-end justify-end">
                                             <p
-                                                class="block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
-                                                ${{product.price}}
+                                                class="text-end block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
+                                                <s>${{product.price}}</s> ${{(product.price - (product.price*(product.discountPercentage/100))).toFixed(2)}}
                                             </p>
                                         </div>
                                         <p style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
@@ -343,11 +340,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="pl-6 pr-6 pb-6">
-                                        <button style="background-color: #fff40042; border: 2px solid #0c0c002e;"
-                                            class="block w-full select-none rounded-lg py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                            type="button">Add to Cart</button>
-                                    </div>
+                                    <app-qtybtn [product] = "product"></app-qtybtn>
                                 </div>
                             </div>
                         </div>

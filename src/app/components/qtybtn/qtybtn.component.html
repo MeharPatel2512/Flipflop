@@ -1,0 +1,19 @@
+<div class="pl-6 pr-6 pb-6" *ngIf = "count == 0">
+    <button style="background-color: #fff40042; border: 2px solid #0c0c002e;"
+    class="block w-full select-none rounded-lg py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+    type="button" (click) = "addtocartfunc()">Add to Cart</button>
+</div>
+    
+<div *ngIf = "count > 0">
+<div class="flex pl-6 pr-6 pb-6">
+    <button style="background-color: #fff40042; border: 2px solid #0c0c002e;"
+    class="block w-1/4 select-none rounded-lg py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+    type="button" (click) = "countminus()"><i class="fa-solid fa-minus"></i></button>
+    <div style="background-color: #fff40042; border: 2px solid #0c0c002e;"
+        class="block w-1/2 select-none rounded-lg py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all"
+        type="button">{{count}}</div>
+        <button style="background-color: #fff40042; border: 2px solid #0c0c002e;"
+        class="block w-1/4 select-none rounded-lg py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        type="button" (click) = "countplus()"><i class="fa-solid fa-plus"></i></button>
+</div>
+    </div>
