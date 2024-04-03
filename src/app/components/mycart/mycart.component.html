@@ -1,34 +1,123 @@
-<div *ngIf = "cart.length == 0" class="flex items-center justify-center">
+<div *ngIf="cart.length == 0" class="flex items-center justify-center">
     There are no items in your cart!!
 </div>
-<div *ngIf = "cart.length > 0" class="px-20 mx-5">
-    <!-- component -->
-    <div class="w-full lg:flex items-center justify-center mb-5" style="display: grid; grid-template-columns: 1fr 2fr;" 
-     *ngFor = "let cartitem of cart">
-        <div style="border-radius: 20px 0px 0px 20px; width: 100%; height: 100%; object-fit: contain;border-left: 1px solid #e5e7eb;border-top:1px solid #e5e7eb;border-bottom: 1px solid #e5e7eb;overflow: hidden;">
 
-            <div class="flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-            style="height:100%;background-image: url({{cartitem.thumbnail}})">
-        </div>
+<div *ngIf="cart.length > 0" class="px-20 mx-5">
+    <!-- component -->
+    <div class="flex p-5 my-4" style="justify-content: start; font-size: medium;"
+        style="background-color: rgba(0, 145, 0, 0.5);">
+        <p class="font-bold text-l" style="color: white;">YOU ARE SAVING ${{gettotaldiscount()}} ON THIS ORDER!!</p><i
+            class="fa-solid fa-hand-holding-dollar ml-3 -mt-1 p-2"
+            style="color: rgb(0, 145, 0); font-size: medium; background-color: white; border-radius: 50%;"></i>
     </div>
+    <div class="mt-6 w-full lg:flex items-center justify-center mb-5"
+        style="display: grid; grid-template-columns: 1fr 2fr;" *ngFor="let cartitem of cart">
         <div
-            class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal" style="border-radius: 0px 20px 20px 0px">
+            style="border-radius: 0.3em 0em 0em 0.3em; width: 100%; height: 100%; object-fit: contain; border-left: 1px solid #000000; border-top: 1px solid #000000; border-bottom: 1px solid #000000; overflow: hidden;">
+
+            <div class="flex-none bg-cover text-center"
+                style="height:100%; background-image: url({{cartitem.thumbnail}})">
+            </div>
+        </div>
+        <div class="bg-white p-4 flex flex-col justify-between leading-normal"
+            style="border-radius: 0em 0.3em 0.3em 0em; border-right : 1px solid black; border-top : 1px solid black; border-bottom : 1px solid black;">
             <div class="mb-8">
                 <div>
                     <div class="text-black font-bold text-xl">{{cartitem.title}}</div>
-                    <div class="text-black font-bold text-l mb-2">{{cartitem.brand}}</div></div>
+                    <div class="text-black font-bold text-l mb-2">{{cartitem.brand}}</div>
+                </div>
                 <p class="text-grey-darker text-base">{{cartitem.description}}</p>
             </div>
-            <div class="flex items-center">
-                <img class="w-10 h-10 rounded-full mr-4"
-                    src={{cartitem.thumbnail}}
-                    alt="Avatar of Jonathan Reinink">
-                <div class="text-sm">
-                    <p class="text-black leading-none">{{cartitem.brand}}</p>
-                    <p class="text-grey-dark">{{cartitem.price}}</p>
-                    <p class="text-grey-dark">{{cartitem.quantity}}</p>
+            <div class="flex" style="justify-content: space-between;">
+                <div class="text-sm flex content-center items-center">
+                    <p class="text-black font-bold text-l mb-2"><s>${{cartitem.price}}</s> ${{(cartitem.price -
+                        (cartitem.price*(cartitem.discountPercentage/100))).toFixed(2)}} </p>
+                </div>
+                <div class="flex content-center items-center">
+                    <button
+                        style="background-color: #0e22ef82; border: 1px solid #0256cf; color: white; border-radius: 0.3em 0em 0em 0.3em; text-shadow: 0em 0em 0.2em black;"
+                        class="block w-1/4 select-none py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85]"
+                        type="button" (click)="countminus(cartitem)"><i class="fa-solid fa-minus"></i></button>
+                    <div style="background-color: #0e22ef82; border: 1px solid #0256cf; color: white; text-shadow: 0em 0em 0.2em black;"
+                        class="block w-1/2 select-none py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all"
+                        type="button">{{cartitem.quantity}}</div>
+                    <button
+                        style="background-color: #0e22ef82; border: 1px solid #0256cf; color: white; border-radius: 0em 0.3em 0.3em 0em; text-shadow: 0em 0em 0.2em black;"
+                        class="block w-1/4 select-none py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85]"
+                        type="button" (click)="countplus(cartitem)"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+            <hr class="mx-0 my-2">
+
+            <div class="flex" style="justify-content: space-between;">
+                <div class="text-sm flex content-center items-center">
+                    <p class="text-black text-l mb-2">Available stock : {{cartitem.stock}}</p>
+                </div>
+                <div class="text-sm flex content-center items-center">
+                    <p class="text-black font-bold text-l mb-2">Total Price : ${{((cartitem.price - (cartitem.price *
+                        cartitem.discountPercentage/100))*cartitem.quantity).toFixed(2)}}</p>
                 </div>
             </div>
         </div>
+    </div>
+    <hr style="height:10px; border:none; color:rgba(51, 51, 51, 0.1); background-color:rgba(51, 51, 51, 0.1);">
+    <div class="flex flex-col mt-6">
+        <div class="flex" style="justify-content: space-between;">
+            <div class="text-sm flex content-center items-center" style="font-size: larger;">
+                <p class="text-black font-bold text-l mb-2">Price Details : </p>
+            </div>
+            <div class="text-sm flex content-center items-center" style="font-size: medium;">
+                <p class="text-black text-l mb-2">({{cart.length}} Items)</p>
+            </div>
+        </div>
+        <hr class="my-6"
+            style="height:1px; border:none; color:rgba(51, 51, 51, 0.1); background-color:rgba(51, 51, 51, 0.1);">
+
+        <div class="flex mb-4" style="justify-content: space-between;">
+            <div class="text-sm flex content-center items-center" style="font-size: medium;">
+                <p class="text-black font-bold text-l mb-2">Total MRP : </p>
+            </div>
+            <div class="text-sm flex content-center items-center" style="font-size: medium;">
+                <p class="text-black text-l mb-2" style="color: rgb(0, 145, 0);">${{gettotalprice()}}</p>
+            </div>
+        </div>
+        <div class="flex mb-4" style="justify-content: space-between;">
+            <div class="text-sm flex content-center items-center" style="font-size: medium;">
+                <p class="text-black font-bold text-l mb-2">Discount on MRP : </p>
+            </div>
+            <div class="text-sm flex content-center items-center" style="font-size: medium;">
+                <p class="text-black text-l mb-2" style="color: rgb(0, 145, 0);">${{gettotaldiscount()}}</p>
+            </div>
+        </div>
+        <div class="flex mb-4" style="justify-content: space-between;">
+            <div class="text-sm flex content-center items-center" style="font-size: medium;">
+                <p class="text-black font-bold text-l mb-2">Platform Fee : </p>
+            </div>
+            <div class="text-sm flex content-center items-center" style="font-size: medium;">
+                <p class="text-black text-l mb-2" style="color: rgb(0, 145, 0);">FREE</p>
+            </div>
+        </div>
+        <div class="flex" style="justify-content: space-between;">
+            <div class="text-sm flex content-center items-center" style="font-size: medium;">
+                <p class="text-black font-bold text-l mb-2">Shipping Fee : </p>
+            </div>
+            <div class="text-sm flex content-center items-center" style="font-size: medium;">
+                <p class="text-black text-l mb-2" style="color: rgb(0, 145, 0);"><s>$30</s> FREE</p>
+            </div>
+        </div>
+        <hr class="my-5"
+            style="height:1px; border:none; color:rgba(51, 51, 51, 0.1); background-color:rgba(51, 51, 51, 0.1);">
+        <div class="flex mb-5" style="justify-content: space-between;">
+            <div class="text-sm flex content-center items-center" style="font-size: large;">
+                <p class="text-black font-bold text-l mb-2">Payable Total Amount : </p>
+            </div>
+            <div class="text-sm flex content-center items-center" style="font-size: large;">
+                <p class="text-black text-l mb-2">${{gettotalamount()}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="flex" style="justify-content: flex-end;">
+        <button style="background-color: #0e22ef82; border: 1px solid #0256cf; color: white; border-radius: 0.3em;   text-shadow: 0em 0em 0.2em black;" class="block w-48 select-none py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            type="button">Continue Paying</button>
     </div>
 </div>

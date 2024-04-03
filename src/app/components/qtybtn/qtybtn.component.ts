@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChange } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { DataminpService } from '../../dataminp.service';
 import { CommonModule } from '@angular/common';
 
@@ -9,14 +9,18 @@ import { CommonModule } from '@angular/common';
   templateUrl: './qtybtn.component.html',
   styleUrl: './qtybtn.component.css'
 })
-export class QtybtnComponent {
+export class QtybtnComponent implements OnInit{
 
   constructor(private datamanip : DataminpService){}
 
-  @Input() product : any
-  count : number = 0
+  count : number = 0 
+  ngOnInit(): void {
+    this.count = this.datamanip.getqty(this.product.id)    
+  }
+  
+  @Input() product : any = {}
   cartdata : any[]  = []
-
+  
   countminus(){
     this.count = this.count - 1
     this.datamanip.addtocart(this.product, this.count)

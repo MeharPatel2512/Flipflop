@@ -49,7 +49,6 @@ export class DataminpService {
         } 
         this.mycart.push(obj)
     }
-    console.log(this.mycart);
     
   }
 
@@ -69,5 +68,17 @@ export class DataminpService {
 
   getproductimages() : any[] {
     return this.clickedproduct.images
+  }
+  
+  getqty(id : any) : number{
+    let flag = 0
+    if(this.mycart.length != 0){
+      this.mycart.forEach(cart => {
+        if(cart.id == id){
+          flag = cart.quantity
+        }
+      });
+    } 
+    return flag
   }
 }

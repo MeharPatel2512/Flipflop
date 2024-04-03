@@ -291,24 +291,28 @@
                         <!-- Your content -->
 
                         <div class="container"
-                            style="display: grid; grid-template-columns: 33% 33% 33%; grid-gap: 0.5em;">
+                            style="display: grid; grid-template-columns: 33% 33% 33%; grid-gap: 1.5em;">
                             
 
                             <div *ngFor="let product of data.products | searchfilter : searchtext">
-                                <div
-                                    class="relative flex w-122 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-                                    <a routerLink="productdetails" routerLinkActive="active"
-                                        class="relative mx-4 mt-4 h-72 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700" (click) = "setproduct(product)">
+                                <div style="border-radius: 0.3em; border: 1px solid rgba(0, 0, 0, 0.3); box-shadow: 0.1em 0.1em 0.4em rgba(0, 0, 0, 0.3);"
+                                    class="relative flex w-122 flex-col bg-white bg-clip-border text-gray-700">
+                                    <a routerLink="productdetails" routerLinkActive="active" style="border-radius: 0.3em"
+                                        class="relative mx-4 mt-4 h-72 overflow-hidden bg-white bg-clip-border text-gray-700" (click) = "setproduct(product)">
                                         <img src={{product.thumbnail}} class="h-full w-full object-cover" />
                                         </a>
                                     <div class="p-6">
                                         <div class="mb-2 flex items-center justify-between">
                                             <p style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
-                                                class="block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
-                                                {{product.brand}} {{product.title}}
+                                                class="font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
+                                                {{product.title}}
+                                            </p>
+                                            <p style="font-size: small; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
+                                                class="font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
+                                                {{product.brand}}
                                             </p>
                                         </div>
-                                        <div class="text-end mb-2 flex items-end justify-end">
+                                        <div class="text-end mb-0 flex items-end justify-end">
                                             <p
                                                 class="text-end block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
                                                 <s>${{product.price}}</s> ${{(product.price - (product.price*(product.discountPercentage/100))).toFixed(2)}}
@@ -319,7 +323,7 @@
                                             {{product.description}}
                                         </p>
                                     </div>
-                                    <div class="pl-6 pr-6 pt- flex">
+                                    <div class="pl-6 pr-6 flex">
 
                                         <div
                                             class="flex items-center block w-1/2 select-none rounded-lg bg-blue-gray-900/10 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
