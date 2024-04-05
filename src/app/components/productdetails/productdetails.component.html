@@ -21,16 +21,16 @@
           <p class="leading-relaxed">{{product.description}}</p>
           <div class="flex">
             <span class="title-font font-medium text-2xl text-gray-900"><s class="mr-4">${{product.price}}</s>${{(product.price - (product.price * (product.discountPercentage/100))).toFixed(2)}}</span>
-            <div class="ml-5">
+            <!-- <div class="ml-5">
                 <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Button</button>
-            </div>
+            </div> -->
             <div *ngIf = "liked == true">
-                <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4" (click) = "liked = false">
+                <button title="Liked" class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4" (click) = "liked = false">
                     <i class="fa-solid fa-heart" style="color: #ff0000;"></i>
                 </button>
             </div>
             <div *ngIf = "liked == false">
-                <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4" (click) = "liked = true">
+                <button title="Disiked" class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4" (click) = "liked = true">
                     <i class="fa-regular fa-heart" style="color: #ff0000;"></i>
                 </button>
             </div>

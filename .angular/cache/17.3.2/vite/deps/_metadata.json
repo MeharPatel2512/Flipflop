@@ -1,49 +1,55 @@
 {
-  "hash": "5b51a61d",
-  "configHash": "bbcd94d0",
-  "lockfileHash": "1c703cd0",
-  "browserHash": "7ac49d27",
+  "hash": "9a935b0f",
+  "configHash": "cd85ac06",
+  "lockfileHash": "b7799153",
+  "browserHash": "b0a40610",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "3a956951",
+      "fileHash": "81752ce1",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "00a59a2f",
+      "fileHash": "89d6d352",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "fc9555b8",
+      "fileHash": "a00ffd05",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "765803e2",
+      "fileHash": "1a0cf218",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "1489ead5",
+      "fileHash": "a05287ed",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "ac2b053b",
+      "fileHash": "7bfce964",
+      "needsInterop": false
+    },
+    "country-state-city": {
+      "src": "../../../../../node_modules/country-state-city/lib/index.js",
+      "file": "country-state-city.js",
+      "fileHash": "28f5f24f",
       "needsInterop": false
     },
     "underscore": {
       "src": "../../../../../node_modules/underscore/modules/index-all.js",
       "file": "underscore.js",
-      "fileHash": "f588f331",
+      "fileHash": "b4b5bf5f",
       "needsInterop": false
     }
   },

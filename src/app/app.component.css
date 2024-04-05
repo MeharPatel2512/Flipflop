@@ -1,11 +1,13 @@
 .cart{
-    background-color: rgba(0, 225, 255, 0.2);
+    background-color: rgba(14, 33, 239, 0.05); 
+    border: 1px solid #0256cf; 
+    color: white; 
+    border-radius: 0.3em;   
+    text-shadow: 0em 0em 0.2em black;
     position: fixed;
     bottom: 2em;
     right: 2em;
-    border-radius: 0.6em;
-    padding: 1em 1.5em;
-    border: 2px solid rgba(0, 17, 255, 0.2);
+    padding: 0.8em 1.2em;
     box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.4);
     z-index: 2;
     transition: all 1s ease;
@@ -14,6 +16,6 @@
 
 .cart i {
     font-size: 2em;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     top: 0.5em;
 }

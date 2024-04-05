@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProductsComponent } from './components/products/products.component';
 import { HomeComponent } from './components/home/home.component';
 import { MycartComponent } from './components/mycart/mycart.component';
+import { DataminpService } from './dataminp.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent {
   title = 'my-app';
   showButton = false
 
-  constructor(){}
+  constructor(private useservice : DataminpService){}
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -26,5 +27,9 @@ export class AppComponent {
 
   scrollShowBtn(){
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  getnumofitems(){
+    return this.useservice.getnumofitems()
   }
 }

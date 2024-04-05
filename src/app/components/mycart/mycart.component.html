@@ -60,18 +60,17 @@
             </div>
         </div>
     </div>
-    <hr style="height:10px; border:none; color:rgba(51, 51, 51, 0.1); background-color:rgba(51, 51, 51, 0.1);">
+    <hr class="my-6" style="height:1px; border:none; color:rgba(51, 51, 51, 0.1); background-color:rgba(51, 51, 51, 0.1);">
     <div class="flex flex-col mt-6">
         <div class="flex" style="justify-content: space-between;">
             <div class="text-sm flex content-center items-center" style="font-size: larger;">
                 <p class="text-black font-bold text-l mb-2">Price Details : </p>
             </div>
             <div class="text-sm flex content-center items-center" style="font-size: medium;">
-                <p class="text-black text-l mb-2">({{cart.length}} Items)</p>
+                <p class="text-black text-l mb-2">({{getnumofitems()}} Items)</p>
             </div>
         </div>
-        <hr class="my-6"
-            style="height:1px; border:none; color:rgba(51, 51, 51, 0.1); background-color:rgba(51, 51, 51, 0.1);">
+        <hr class="my-6" style="height:1px; border:none; color:rgba(51, 51, 51, 0.1); background-color:rgba(51, 51, 51, 0.1);">
 
         <div class="flex mb-4" style="justify-content: space-between;">
             <div class="text-sm flex content-center items-center" style="font-size: medium;">
@@ -117,7 +116,7 @@
         </div>
     </div>
     <div class="flex" style="justify-content: flex-end;">
-        <button style="background-color: #0e22ef82; border: 1px solid #0256cf; color: white; border-radius: 0.3em;   text-shadow: 0em 0em 0.2em black;" class="block w-48 select-none py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        <button routerLink = "address" routerLinkActive = "active" style="background-color: #0e22ef82; border: 1px solid #0256cf; color: white; border-radius: 0.3em;   text-shadow: 0em 0em 0.2em black;" class="block w-48 select-none py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button">Continue Paying</button>
     </div>
 </div>

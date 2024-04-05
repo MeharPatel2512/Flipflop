@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import _ from 'underscore';
 
 @Injectable({
   providedIn: 'root'
@@ -58,8 +59,7 @@ export class DataminpService {
 
   clickedproduct : any = {}
   setclickedproduct(product : any){
-    this.clickedproduct = product
-    
+    this.clickedproduct = product 
   }
 
   getclickedproduct(){
@@ -81,4 +81,60 @@ export class DataminpService {
     } 
     return flag
   }
+
+  getnumofitems(){
+    let num = 0
+    this.mycart.forEach(cart => {
+      num = num + cart.quantity
+    });
+    return num
+  }
+
+  userdata : any = {}
+  saveuserdata(obj : any){
+    this.userdata = obj
+  }
+
+  myorders : any[] = []
+  placeorder(){
+    if(this.myorders.length == 0){
+      this.mycart.forEach(cartele => {
+        this.myorders.push(cartele)
+      });
+      this.mycart = []
+    }
+    else{
+      this.mycart.forEach(cart => {
+        let flag = 0
+        this.myorders.forEach(order => {
+          if(order.id == cart.id){
+            flag = 1
+            order.quantity = order.quantity + cart.quantity
+          }
+        });
+        if(flag == 0){
+          this.myorders.push(cart)
+        }
+      });
+      this.mycart = []
+    }
+  }
+
+  getorderdata(){
+    return this.myorders
+  }
+
+  getuserdata(){
+    return this.userdata
+  }
+
+  // getnewbrands(data : any[], cats : any[]) : any[]{
+  //   data.forEach((product : any) => {
+  //     if((!_.contains(this.brands, product.brand)) && (_.contains(this.categories, product.category))){
+  //         this.brands.push(product.brand)
+  //     }
+  //   })
+  //   console.log(this.brands)
+  // }
 }
+ 

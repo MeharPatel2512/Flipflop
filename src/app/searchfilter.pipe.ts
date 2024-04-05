@@ -14,9 +14,10 @@ export class SearchfilterPipe implements PipeTransform {
     }
     else{
       return value.filter((e : any) => {
-        return (e.title.toLowerCase().indexOf(searchedval.toLowerCase()) ||
-        e.brand.toLowerCase().indexOf(searchedval.toLowerCase()) ||
-        e.description.toLowerCase().indexOf(searchedval.toLowerCase())) > -1 ;
+        return (e.title.toLowerCase().indexOf(searchedval.toLowerCase()) > -1 ||
+        e.brand.toLowerCase().indexOf(searchedval.toLowerCase()) > -1 ||
+        e.description.toLowerCase().indexOf(searchedval.toLowerCase()) > -1 ||
+        e.category.toLowerCase().indexOf(searchedval.toLowerCase()) > -1);
         
       })
     } 

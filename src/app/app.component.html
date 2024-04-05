@@ -1,6 +1,10 @@
 <div>
   <app-header></app-header>
-  <a class="cart" [hidden] = "!showButton" (click) = "scrollShowBtn()"><i class="fa-solid fa-cart-shopping"></i></a>
+  <a routerLink = "mycart" routerLinkActive=""active class="cart" [hidden] = "!showButton" (click) = "scrollShowBtn()">
+    <div class="absolute flex px-2 py-0" style="background-color: rgba(2, 87, 207, 0.7); border-radius: 50%; color: white; top: 0.1em;
+    right: 0.1em;">{{getnumofitems()}}</div>
+    <i class="fa-solid fa-cart-shopping"></i>
+  </a>
   <!-- <app-home></app-home> -->
   <router-outlet></router-outlet>
   <app-footer></app-footer>

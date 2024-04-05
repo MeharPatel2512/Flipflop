@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DataminpService } from '../../dataminp.service';
 import { CommonModule } from '@angular/common';
+import { AddressComponent } from '../address/address.component';
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-mycart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AddressComponent, RouterModule, RouterLink, RouterLinkActive],
   templateUrl: './mycart.component.html',
   styleUrl: './mycart.component.css'
 })
@@ -47,5 +49,9 @@ export class MycartComponent implements OnInit{
       dis = dis + ((cartdata.price * cartdata.discountPercentage/100) * cartdata.quantity)
     });
     return dis.toFixed(2)
+  }
+
+  getnumofitems(){
+    return this.datamanip.getnumofitems()
   }
 }
