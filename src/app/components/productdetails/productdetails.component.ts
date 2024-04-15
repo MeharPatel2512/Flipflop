@@ -26,8 +26,6 @@ export class ProductdetailsComponent implements OnInit{
   liked : boolean = false
 
   getimage(image : any){
-    console.log(image);
-        this.showimg = image
-      console.log(this.showimg)
+     this.showimg = image
   }
 }

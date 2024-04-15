@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Country, State, City }  from 'country-state-city';
 import { DataminpService } from '../../dataminp.service';
 import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import { Location } from '@angular/common'
 
 
 @Component({
@@ -14,11 +15,23 @@ import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
   styleUrl: './address.component.css'
 })
 export class AddressComponent implements OnInit{
-  constructor(private useservice : DataminpService){}
+  constructor(private useservice : DataminpService, private location: Location){}
 
   countries : any[] = []
+  userdata : any
   ngOnInit(): void {
     this.countries = Country.getAllCountries() 
+    this.userdata = this.useservice.getuserdata()
+    if(this.userdata.name){
+      this.username = this.userdata.name
+      this.useremail = this.userdata.email
+      this.userphonenum = this.userdata.phone
+      this.useraddressline1 = this.userdata.addressline1
+      this.useraddressline2 = this.userdata.addressline2
+      this.countryname = this.userdata.country
+      this.statename = this.userdata.state
+      this.cityname = this.userdata.city
+    }
   }
 
   showerror : boolean = false
@@ -35,6 +48,7 @@ export class AddressComponent implements OnInit{
   selectcity = "Choose a City"
   countryname : any = ""
   statename : any = ""
+  cityname : any = ""
 
   states : any[] = []
   cities : any[] = []
@@ -47,6 +61,7 @@ export class AddressComponent implements OnInit{
   getcities(){
     this.cities = City.getCitiesOfState(this.selectcountry,this.selectstate)
     this.statename = (State.getStateByCodeAndCountry(this.selectstate, this.selectcountry))?.name
+    this.cityname = this.selectcity
   }
   
   senduserdata(){
@@ -59,7 +74,7 @@ export class AddressComponent implements OnInit{
         "addressline2" : this.useraddressline2,
         "country" : this.countryname,
         "state" : this.statename,
-        "city" : this.selectcity
+        "city" : this.cityname
       }
       this.useservice.saveuserdata(user)
       this.orderplaced = true
@@ -74,5 +89,9 @@ export class AddressComponent implements OnInit{
 
   getnumofitems(){
     return this.useservice.getnumofitems()
+  }
+
+  goBackToPrevPage(): void {
+    this.location.back();
   }
 }

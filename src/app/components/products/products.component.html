@@ -87,7 +87,7 @@
                                 <!-- Expand/collapse section button -->
                                 <button type="button"
                                     class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500"
-                                    aria-controls="filter-section-0" aria-expanded="false" (click)="this.showcat = !this.showcat">
+                            aria-controls="filter-section-0" aria-expanded="false" (click)="this.showcat = !this.showcat">
                                     <span class="font-medium text-gray-900">Category</span>
                                     <span class="ml-6 flex items-center">
                                         <!-- Expand icon, show/hide based on section open state. -->
@@ -101,9 +101,8 @@
                             <!-- Filter section, show/hide based on section state. -->
                             <div class="pt-6" id="filter-section-0" *ngIf="showcat == true">
                                 <div class="space-y-4">
-                                    <div *ngFor="let cate of categories" class="flex items-center">
-                                        <input type="checkbox" (click) = "categoryclick(cate)"
-                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                    <div *ngFor="let cate of categories" class="flex items-center catcheck">
+                                        <p-checkbox name = "category" [value] = "cate" [(ngModel)] = "selectedcategories" class="h-4 w-4 rounded border-gray-300 focus:ring-indigo-500" (click) = "categoryclick()"></p-checkbox>
                                         <label class="ml-3 text-sm text-gray-600">{{cate}}</label>
                                     </div>
                                 </div>
@@ -114,7 +113,7 @@
                                 <!-- Expand/collapse section button -->
                                 <button type="button"
                                     class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500"
-                                    aria-controls="filter-section-1" aria-expanded="false" (click)="this.showbrands = !this.showbrands">
+                            aria-controls="filter-section-1" aria-expanded="false" (click)="this.showbrands = !this.showbrands">
                                     <span class="font-medium text-gray-900">Brand</span>
                                     <span class="ml-6 flex items-center">
                                         <!-- Expand icon, show/hide based on section open state. -->
@@ -129,8 +128,7 @@
                             <div class="pt-6" id="filter-section-1" *ngIf="showbrands == true">
                                 <div class="space-y-4">
                                     <div class="flex items-center" *ngFor="let brand of brands">
-                                        <input id="filter-category-0" type="checkbox" (click) = "brandclick(brand)"
-                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox name = "probrands" [value] = "brand" [(ngModel)] = "selectedbrands" class="h-4 w-4 rounded border-gray-300 focus:ring-indigo-500" (click) = "brandclick()"></p-checkbox>
                                         <label class="ml-3 text-sm text-gray-600">{{brand}}</label>
                                     </div>
                                 </div>
@@ -156,19 +154,23 @@
                             <div class="pt-6" id="filter-section-2" *ngIf="showdis == true">
                                 <div class="space-y-4">
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" value="dis1" type="checkbox" (click) = "discountclick(1)" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "1" [(ngModel)] = "selecteddiscount" (click) = "discountclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">0-5%</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" value="dis2" type="checkbox" (click) = "discountclick(2)" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "2" [(ngModel)] = "selecteddiscount" (click) = "discountclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">5-10%</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" value="dis3" type="checkbox" (click) = "discountclick(3)" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "3" [(ngModel)] = "selecteddiscount" (click) = "discountclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">10-15%</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" value="dis4" type="checkbox" (click) = "discountclick(4)" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "4" [(ngModel)] = "selecteddiscount" (click) = "discountclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">15-20%</label>
                                     </div>
                                 </div>
@@ -194,28 +196,28 @@
                             <div class="pt-6" id="filter-section-2" *ngIf="showrating == true">
                                 <div class="space-y-4">
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" type="checkbox" (click) = "ratingclick(1)"
-                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "1" [(ngModel)] = "selectedrating" (click) = "ratingclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">1</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" type="checkbox" (click) = "ratingclick(2)"
-                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "2" [(ngModel)] = "selectedrating" (click) = "ratingclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">2</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" type="checkbox" (click) = "ratingclick(3)"
-                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "3" [(ngModel)] = "selectedrating" (click) = "ratingclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">3</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" type="checkbox" (click) = "ratingclick(4)"
-                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "4" [(ngModel)] = "selectedrating" (click) = "ratingclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">4</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" type="checkbox" (click) = "ratingclick(5)"
-                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "5" [(ngModel)] = "selectedrating" (click) = "ratingclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">5</label>
                                     </div>
                                 </div>
@@ -241,39 +243,39 @@
                             <div class="pt-6" id="filter-section-2" *ngIf="showprice == true">
                                 <div class="space-y-4">
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" type="checkbox" (click) = "priceclick(1)"
-                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "1" [(ngModel)] = "selectedprice" (click) = "priceclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">less than
                                             100$</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" type="checkbox" (click) = "priceclick(2)"
-                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "2" [(ngModel)] = "selectedprice" (click) = "priceclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">100-300$</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" type="checkbox" (click) = "priceclick(3)"
-                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "3" [(ngModel)] = "selectedprice" (click) = "priceclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">300-500$</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" type="checkbox" (click) = "priceclick(4)"
-                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "4" [(ngModel)] = "selectedprice" (click) = "priceclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">500-800$</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" type="checkbox" (click) = "priceclick(5)"
-                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "5" [(ngModel)] = "selectedprice" (click) = "priceclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">800-1200$</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" type="checkbox" (click) = "priceclick(6)"
-                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "6" [(ngModel)] = "selectedprice" (click) = "priceclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">1200-1800$</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="filter-size-0" type="checkbox" (click) = "priceclick(7)"
-                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        <p-checkbox [value] = "7" [(ngModel)] = "selectedprice" (click) = "priceclick()"
+                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"></p-checkbox>
                                         <label for="filter-size-0" class="ml-3 text-sm text-gray-600">more than
                                             1800$</label>
                                     </div>
@@ -281,10 +283,69 @@
                             </div>
                         </div>
                     </div>
+
+
                     <!-- Product grid -->
                     <div class="lg:col-span-3">
-                        <app-displayproducts [filtereddata] = "filtereddata" [searchtext] = "searchtext">
-                        </app-displayproducts>
+                        <div class="container dark:bg-black" style="display: grid; grid-template-columns: 33% 33% 33%; grid-gap: 1.5em;">
+
+                            <div *ngFor="let product of filtereddata | searchfilter : searchtext">
+                                <div style="border-radius: 0.3em; border: 1px solid rgba(0, 0, 0, 0.3); box-shadow: 0.1em 0.1em 0.4em rgba(0, 0, 0, 0.3);"
+                                    class="relative flex w-122 flex-col bg-white bg-clip-border text-gray-700">
+                                    <a routerLink="productdetails" routerLinkActive="active" style="border-radius: 0.3em"
+                                        class="relative mx-4 mt-4 h-72 overflow-hidden bg-white bg-clip-border text-gray-700"
+                                        (click)="setproduct(product)">
+                                        <img src={{product.thumbnail}} class="h-full w-full object-cover" />
+                                    </a>
+                                    <div class="p-6">
+                                        <div class="mb-2 flex items-center justify-between">
+                                            <p style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
+                                                class="font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
+                                                {{product.title}}
+                                            </p>
+                                            <p style="font-size: small; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
+                                                class="font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
+                                                {{product.brand}}
+                                            </p>
+                                        </div>
+                                        <div class="text-end mb-0 flex items-end justify-end">
+                                            <p
+                                                class="text-end block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
+                                                <s class="font-small" style="font-size: 0.9em;">${{product.price}}</s> ${{(product.price -
+                                                (product.price*(product.discountPercentage/100))).toFixed(2)}}
+                                            </p>
+                                        </div>
+                                        <p style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
+                                            class="block font-sans text-sm font-normal leading-normal text-gray-700 antialiased opacity-75">
+                                            {{product.description}}
+                                        </p>
+                                    </div>
+                                    <div class="pl-6 pr-6 flex">
+                        
+                                        <div
+                                            class="flex items-center block w-1/2 select-none rounded-lg bg-blue-gray-900/10 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <p class="ml-2 text-sm font-bold text-gray-900 dark:text-white">
+                                                {{product.rating}}</p>
+                                        </div>
+                                        <div
+                                            class="flex items-center block w-1/2 select-none rounded-lg bg-blue-gray-900/10 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                                            <i class="fa-solid fa-tag" style="color: #007514;"></i>
+                                            <p class="ml-2 text-sm font-bold text-gray-900 dark:text-white">
+                                                {{product.discountPercentage}}%
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <app-qtybtn [product]="product"></app-qtybtn>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>

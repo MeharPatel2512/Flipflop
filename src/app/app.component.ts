@@ -6,11 +6,12 @@ import { ProductsComponent } from './components/products/products.component';
 import { HomeComponent } from './components/home/home.component';
 import { MycartComponent } from './components/mycart/mycart.component';
 import { DataminpService } from './dataminp.service';
+import { CollectionsComponent } from './components/collections/collections.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, HeaderComponent, FooterComponent, ProductsComponent, HomeComponent, MycartComponent],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, HeaderComponent, FooterComponent, ProductsComponent, HomeComponent, MycartComponent, CollectionsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
