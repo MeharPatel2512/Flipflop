@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataminpService } from '../../dataminp.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-productdetails',
@@ -12,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProductdetailsComponent implements OnInit{
 
-  constructor( private datamanip : DataminpService ){}
+  constructor( private datamanip : DataminpService, private location: Location ){}
 
   product : any = {}
   images : any[] = []
@@ -27,5 +28,9 @@ export class ProductdetailsComponent implements OnInit{
 
   getimage(image : any){
      this.showimg = image
+  }
+
+  goBackToPrevPage(): void {
+    this.location.back();
   }
 }

@@ -287,5 +287,18 @@ export class DataminpService {
   }
 
   collections : any[] = []
+  addtocollection(){
+    const obj = {
+      "collection" : this.collections.length,
+      "products" : this.mycart,
+      "createddate" : Date.now()
+    }
+    this.collections.push(obj)
+    this.mycart = []
+  }
+
+  getallcollections(){
+    return this.collections
+  }
 }
  

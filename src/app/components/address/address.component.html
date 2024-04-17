@@ -1,72 +1,99 @@
-<div class="max-w-md mx-auto" *ngIf="orderplaced == false">
+<div class="max-w-md mx-auto" *ngIf="orderplaced == false" [formGroup] = "userform">
     <div class="relative z-0 w-full mb-5 group">
         <input type="text" [(ngModel)]="username" name="floating_name" id="floating_name"
             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" " required />
+            placeholder="" formControlName = "name1" />
         <label for="floating_name"
             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
+            <div *ngIf = "userform.controls['name1'].invalid && (showerror || userform.controls['name1'].touched || userform.controls['name1'].dirty)">
+                <span class="text-red-500" *ngIf = "userform.controls['name1'].errors?.['required']">This Field Is Required</span>
+            </div>
     </div>
     <div class="relative z-0 w-full mb-5 group">
         <input type="email" [(ngModel)]="useremail" name="floating_email" id="floating_email"
             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" " required />
+            placeholder=" " formControlName = "email" />
         <label for="floating_email"
             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email
             address</label>
+            <div *ngIf = "userform.controls['email'].invalid && (showerror || userform.controls['email'].touched || userform.controls['email'].dirty)">
+                <span class="text-red-500" *ngIf = "userform.controls['email'].errors?.['required']">This Field Is Required</span>
+                <span class="text-red-500" *ngIf = "userform.controls['email'].errors?.['email']">This is not email</span>
+            </div>
     </div>
     <div class="relative z-0 w-full mb-5 group">
         <input type="number" [(ngModel)]="userphonenum" name="floating_phoneno" id="floating_phoneno"
             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" " required />
+            placeholder=" " formControlName = "phone_no" />
         <label for="floating_phoneno"
             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone
             Number</label>
+            <div *ngIf = "userform.controls['phone_no'].invalid && (showerror || userform.controls['phone_no'].touched || userform.controls['phone_no'].dirty)">
+                <span class="text-red-700" *ngIf = "userform.controls['phone_no'].errors?.['required']">This Field Is Required</span>
+                <span class="text-red-700" *ngIf = "userform.controls['phone_no'].errors?.['pattern']">Not valid Phone number</span>
+                <span class="text-red-700" *ngIf = "userform.controls['phone_no'].errors?.['minLength']">Should be atleast 10 numbers</span>
+            </div>
     </div>
     <div class="relative z-0 w-full mb-5 group">
         <input type="text" [(ngModel)]="useraddressline1" name="floating_addressline1" id="floating_addressline1"
             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" " required />
+            placeholder="" formControlName = "addline1" />
         <label for="floating_addressline1"
             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">AddressLine1</label>
+            <div *ngIf = "userform.controls['addline1'].invalid && (showerror || userform.controls['addline1'].touched || userform.controls['addline1'].dirty)">
+                <span class="text-red-700" *ngIf = "userform.controls['addline1'].errors?.['required']">This Field Is Required</span>
+            </div>
     </div>
     <div class="relative z-0 w-full mb-5 group">
         <input type="text" [(ngModel)]="useraddressline2" name="floating_addressline2" id="floating_addressline2"
             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" " required />
+            placeholder="" formControlName = "addline2" />
         <label for="floating_addressline2"
             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">AddressLine2</label>
+            <div *ngIf = "userform.controls['addline2'].invalid && (showerror || userform.controls['addline2'].touched || userform.controls['addline2'].dirty)">
+                <span class="text-red-700" *ngIf = "userform.controls['addline2'].errors?.['required']">This Field Is Required</span>
+            </div>
     </div>
 
     <div class="relative z-0 w-full mb-5 group">
 
         <div class="max-w-full mx-auto">
             <select name="Countries" [(ngModel)]="selectcountry"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName = "country">
                 <option selected>Choose a Country</option>
                 <option *ngFor="let country of countries" value="{{country.isoCode}}">{{country.name}}</option>
             </select>
+        </div>
+        <div *ngIf = "userform.controls['country'].invalid && (showerror || userform.controls['country'].touched || userform.controls['country'].dirty)">
+            <span class="text-red-700" *ngIf = "userform.controls['country'].errors?.['required']">This Field Is Required</span>
         </div>
     </div>
     <div class="relative z-0 w-full mb-5 group">
 
         <div class="max-w-full mx-auto">
             <select name="States" [(ngModel)]="selectstate" (click)="getstates()"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName = "state">
                 <option selected>Choose a State</option>
                 <option *ngFor="let state of states" value="{{state.isoCode}}">{{state.name}}
                 </option>
             </select>
+        </div>
+        <div *ngIf = "userform.controls['state'].invalid && (showerror || userform.controls['state'].touched || userform.controls['state'].dirty)">
+            <span class="text-red-700" *ngIf = "userform.controls['state'].errors?.['required']">This Field Is Required</span>
         </div>
     </div>
     <div class="relative z-0 w-full mb-5 group">
         <div>
             <div class="max-w-full mx-auto">
                 <select name="Cities" [(ngModel)]="selectcity" (click)="getcities()"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName = "city">   
                     <option selected>Choose a City</option>
                     <option *ngFor="let city of cities">{{city.name}}
                     </option>
                 </select>
+            </div>
+            <div *ngIf = "userform.controls['city'].invalid && (showerror || userform.controls['city'].touched || userform.controls['city'].dirty)">
+                <span class="text-red-700" *ngIf = "userform.controls['city'].errors?.['required']">This Field Is Required</span>
             </div>
         </div>
     </div>
@@ -83,6 +110,7 @@
 </div>
 
 <div *ngIf="orderplaced == true">
+
     <div class="flex p-5 my-4 mx-20"
         style="justify-content: center; font-size: medium; background-color: rgba(0, 145, 12, 0.5);">
         <p class="font-bold text-l" style="color: white;">Congratulations!! Your Order Has Been Placed!!</p>

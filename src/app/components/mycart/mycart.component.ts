@@ -54,4 +54,9 @@ export class MycartComponent implements OnInit{
   getnumofitems(){
     return this.datamanip.getnumofitems()
   }
+
+  saveforlaterbtn(){
+    this.datamanip.addtocollection()
+    this.cart = this.datamanip.getcartdata()
+  }
 }
